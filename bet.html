@@ -106,12 +106,35 @@ footer p{font-size:13px;line-height:1.8}
 footer .fb{font-weight:700;color:#fff}
 
 /* RESPONSIVE */
-@media(max-width:600px){
-  .pain-grid{grid-template-columns:1fr}
-  .promise-grid{grid-template-columns:1fr}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .hero{padding:100px 20px 40px}
+  .hero h1{font-size:clamp(30px,8vw,48px)}
+  .hero-sub{font-size:16px}
+  .hero-pills{gap:8px}
+  .pill{font-size:14px;padding:10px 20px}
+  .section{padding:56px 0}
+  .sec-title{font-size:clamp(22px,6vw,32px)}
+  .sec-tag{font-size:15px}
+  .pain-grid{grid-template-columns:1fr;gap:14px}
+  .pain-card{padding:24px 20px}
+  .pain-num{font-size:28px}
+  .pain-label{font-size:14px}
+  .vs-wrap{border-radius:14px}
+  table.vs{font-size:13px}
+  table.vs thead th{padding:14px 10px;font-size:13px}
+  table.vs tbody td{padding:12px 10px;font-size:13px}
+  table.vs tbody td:first-child{padding-left:14px}
+  .promise-grid{grid-template-columns:1fr;gap:14px}
+  .promise-card{padding:28px 20px}
+  .p-num{font-size:40px}
   .process-step:not(:last-child)::after{content:'↓';position:static;display:block;margin-top:8px}
   .process-row{flex-direction:column;align-items:center}
   .process-step{max-width:280px}
+  .cta-section{padding:48px 20px 72px}
+  .cta-box{padding:36px 24px;border-radius:18px}
+  .cta-box h2{font-size:clamp(20px,5vw,28px)}
+  .cta-btn{padding:16px 36px;font-size:16px}
 }
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}

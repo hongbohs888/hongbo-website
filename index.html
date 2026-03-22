@@ -161,14 +161,59 @@ footer .fb{font-weight:700;color:#fff}
 @media(max-width:768px){
   .nav-links{display:none}.nav-toggle{display:block}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:rgba(255,255,255,.98);padding:16px 28px;gap:14px;border-bottom:1px solid var(--border)}
-  .cards{grid-template-columns:1fr}
+  .container{padding:0 20px}
+  .hero{padding:100px 20px 36px}
+  .hero h1{font-size:clamp(28px,8vw,42px);letter-spacing:-1px}
+  .hero-sub{font-size:17px}
+  .hero-btns{flex-direction:column;width:100%;max-width:320px;margin:0 auto}
+  .btn-p,.btn-g{width:100%;text-align:center;padding:16px 20px;font-size:17px}
+  .trust-banner{padding:28px 20px}
+  .trust-big{font-size:18px}
+  .trust-sub{font-size:15px}
+  section{padding:56px 0}
+  .sec-title{font-size:clamp(22px,6vw,32px)}
+  .sec-desc{font-size:15px}
+  .steps-flow{gap:12px}
+  .step-l{font-size:14px}
+  .cards{grid-template-columns:1fr;gap:16px}
+  .card{padding:24px 20px}
+  .card-n{font-size:36px}
+  .card h3{font-size:18px}
+  .card .sub{font-size:14px}
+  .card ul li{font-size:14px}
   .m-row{grid-template-columns:1fr}
-  .f-grid{grid-template-columns:1fr}
-  .case-grid{grid-template-columns:repeat(2,1fr)}
-  .ev-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-grid{grid-template-columns:repeat(2,1fr);gap:28px}
+  .m-old,.m-new{padding:20px}
+  .stats{padding:40px 0}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .stat-num{font-size:clamp(28px,8vw,40px)}
+  .stat-label{font-size:13px}
+  .f-grid{grid-template-columns:1fr;gap:28px}
+  .f-photo{width:140px;height:170px;margin:0 auto 12px}
+  .f-name{font-size:20px}
+  .f-block{padding:16px}
+  .f-tags{gap:6px}
+  .f-tag{font-size:11px;padding:4px 10px}
+  .case-tabs{gap:8px}
+  .case-tab{padding:6px 14px;font-size:13px}
+  .case-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .case-info{padding:10px 12px}
+  .case-info h4{font-size:13px}
+  .case-info p{font-size:11px}
+  .p-badge{font-size:10px;padding:2px 8px}
+  .contact-qr{width:160px;height:160px}
+  .c-name{font-size:18px}
+  .c-tags{gap:6px}
+  .c-tag{font-size:12px;padding:5px 12px}
+  .quote-banner{padding:48px 20px}
+  .quote-banner blockquote{font-size:clamp(18px,5vw,26px)}
+  .quote-sub{font-size:15px}
+  .float-btn{bottom:16px;right:16px;padding:10px 18px;font-size:13px}
 }
-@media(max-width:480px){.case-grid{grid-template-columns:1fr}}
+@media(max-width:480px){
+  .hero h1{font-size:28px}
+  .case-grid{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:16px}
+}
 
 /* ANIM */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -352,14 +397,14 @@ footer .fb{font-weight:700;color:#fff}
     </div>
     <div class="f-grid">
       <div class="f-person">
-        <div class="f-photo"><img src="images/brand/founder-dongdong.jpg" alt="董董"></div>
+        <div class="f-photo"><img loading="lazy" decoding="async" src="images/brand/founder-dongdong.jpg" alt="董董"></div>
         <div class="f-name">董董</div>
         <div class="f-role">创始人</div>
         <div class="f-block"><div class="fb-role">角色</div><div class="fb-title">泓博文化传媒 创始人</div><p class="fb-desc">带领团队专注多行业短视频运营，覆盖汽车、美容、境外、摄影、教育、本地生活、知识付费、招商加盟。对赌模式敢承诺，是因为真跑出过结果。</p></div>
         <div class="f-block"><div class="fb-role">专业积累</div><div class="fb-title">全链路短视频操盘手</div><p class="fb-desc">从选题策划、脚本创作到拍摄执行、后期制作、投流优化，每个环节都亲自跑过。不是纸上谈兵，是打过仗的人。</p></div>
       </div>
       <div class="f-person">
-        <div class="f-photo"><img src="images/brand/founder-hansong.jpg" alt="汉松"></div>
+        <div class="f-photo"><img loading="lazy" decoding="async" src="images/brand/founder-hansong.jpg" alt="汉松"></div>
         <div class="f-name">汉松</div>
         <div class="f-role">联合创始人</div>
         <div class="f-block"><div class="fb-role">角色</div><div class="fb-title">泓博文化传媒 联合创始人</div><p class="fb-desc">懂增长链路，不只懂拍视频。视频 → 私信 → 到店 → 成交，中间每一步都有流失。我们优化的是整条链路，不只是播放量。</p></div>
@@ -462,14 +507,14 @@ footer .fb{font-weight:700;color:#fff}
     </div>
 
     <div class="case-grid">
-      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img src="images/cases/featured-dy-01.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 01 标题</h4><p>行业 · 抖音</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img src="images/cases/featured-dy-02.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 02 标题</h4><p>行业 · 抖音</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img src="images/cases/featured-dy-03.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 03 标题</h4><p>行业 · 抖音</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img src="images/cases/featured-dy-04.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 04 标题</h4><p>行业 · 抖音</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img src="images/cases/featured-xhs-01.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 01 标题</h4><p>行业 · 小红书</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img src="images/cases/featured-xhs-02.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 02 标题</h4><p>行业 · 小红书</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img src="images/cases/featured-xhs-03.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 03 标题</h4><p>行业 · 小红书</p></div></a>
-      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img src="images/cases/featured-xhs-04.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 04 标题</h4><p>行业 · 小红书</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img loading="lazy" decoding="async" src="images/cases/featured-dy-01.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 01 标题</h4><p>行业 · 抖音</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img loading="lazy" decoding="async" src="images/cases/featured-dy-02.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 02 标题</h4><p>行业 · 抖音</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img loading="lazy" decoding="async" src="images/cases/featured-dy-03.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 03 标题</h4><p>行业 · 抖音</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="douyin"><div class="case-thumb"><span class="p-badge">抖音</span><img loading="lazy" decoding="async" src="images/cases/featured-dy-04.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>抖音精选 04 标题</h4><p>行业 · 抖音</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img loading="lazy" decoding="async" src="images/cases/featured-xhs-01.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 01 标题</h4><p>行业 · 小红书</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img loading="lazy" decoding="async" src="images/cases/featured-xhs-02.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 02 标题</h4><p>行业 · 小红书</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img loading="lazy" decoding="async" src="images/cases/featured-xhs-03.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 03 标题</h4><p>行业 · 小红书</p></div></a>
+      <a href="#" target="_blank" class="case-card" data-platform="xhs"><div class="case-thumb"><span class="p-badge">小红书</span><img loading="lazy" decoding="async" src="images/cases/featured-xhs-04.jpg"><div class="case-play">▶</div></div><div class="case-info"><h4>小红书精选 04 标题</h4><p>行业 · 小红书</p></div></a>
     </div>
 
     <div style="text-align:center;margin-bottom:48px;">
@@ -485,7 +530,7 @@ footer .fb{font-weight:700;color:#fff}
     <div class="sec-eye">联系我们</div>
     <h2 class="sec-title">聊聊你的行业怎么做增长</h2>
     <p class="sec-desc">不管你是刚起步还是想换服务商，先聊聊，不收费</p>
-    <div class="contact-qr"><img src="images/brand/qrcode.jpg" alt="二维码"></div>
+    <div class="contact-qr"><img loading="lazy" decoding="async" src="images/brand/qrcode.jpg" alt="二维码"></div>
     <div class="c-name">泓博文化传媒</div>
     <div class="c-tags">
       <span class="c-tag">短视频代运营</span>
