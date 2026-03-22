@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对赌模式详解 — 泓博文化传媒</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #ffffff;
+  --bg-light: #f5f5f5;
+  --bg-dark: #1a1a1a;
+  --bg-card: #f8f8f8;
+  --text: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --accent: #1a5fb4;
+  --accent-hover: #154d96;
+  --accent-light: #e8f0fc;
+  --border: #e8e8e8;
+  --green: #1a8a4a;
+  --green-light: #e6f7ed;
+  --red: #d94040;
+  --red-light: #fdeaea;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg); color: var(--text);
+  line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+.container { max-width: 840px; margin: 0 auto; padding: 0 32px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+nav .nav-inner {
+  max-width: 1160px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between; height: 60px;
+}
+.nav-brand { font-size: 16px; font-weight: 900; }
+.nav-back { font-size: 14px; color: var(--accent); font-weight: 500; transition: opacity 0.3s; }
+.nav-back:hover { opacity: 0.7; }
+
+/* PAGE HERO */
+.page-hero {
+  padding: 140px 0 80px; text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900; line-height: 1.2; margin-bottom: 20px;
+}
+.page-hero .hero-sub {
+  font-size: 18px; color: var(--text-secondary);
+  line-height: 1.8; max-width: 580px; margin: 0 auto;
+}
+
+/* CONTENT SECTIONS */
+.content-section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.content-section:last-of-type { border-bottom: none; }
+.content-section h2 { font-size: 28px; font-weight: 900; margin-bottom: 24px; }
+.content-section h3 { font-size: 20px; font-weight: 700; margin-top: 40px; margin-bottom: 16px; }
+.content-section p { font-size: 16px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 16px; }
+.content-section p strong { color: var(--text); }
+
+/* CALC TABLE */
+.calc-table {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px 28px; margin: 28px 0;
+}
+.calc-table .calc-title {
+  font-size: 14px; color: var(--text-muted);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 20px; font-weight: 600;
+}
+.calc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  font-size: 15px; color: var(--text-secondary);
+}
+.calc-row:last-child {
+  border-bottom: none; padding-top: 18px;
+  color: var(--text); font-weight: 700; font-size: 17px;
+}
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: var(--accent); color: #fff;
+  border-radius: 16px; padding: 36px 32px; margin: 36px 0; text-align: center;
+}
+.highlight-box .hl-big { font-size: 24px; font-weight: 900; margin-bottom: 12px; }
+.highlight-box .hl-sub { font-size: 16px; opacity: 0.9; line-height: 1.7; }
+
+/* INDUSTRY CARDS */
+.industry-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+.ind-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; }
+.ind-item .ind-icon { font-size: 28px; margin-bottom: 10px; }
+.ind-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.ind-item p { font-size: 13px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; }
+
+/* THREE THINGS */
+.three-things { counter-reset: thing; margin: 28px 0; }
+.thing-item {
+  counter-increment: thing; padding: 28px 24px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; margin-bottom: 16px;
+}
+.thing-item::before {
+  content: "第" counter(thing) "件事"; display: block;
+  font-size: 13px; color: var(--accent); font-weight: 600;
+  letter-spacing: 1px; margin-bottom: 8px;
+}
+.thing-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.thing-item p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+
+/* ===== CASE STUDIES ===== */
+.case-study {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px 32px; margin: 36px 0;
+}
+
+.case-badge {
+  display: inline-block; padding: 4px 14px;
+  background: var(--accent-light); color: var(--accent);
+  font-size: 13px; font-weight: 600; border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.case-study h3 {
+  font-size: 22px; font-weight: 900; margin-top: 0; margin-bottom: 8px;
+}
+
+.case-study .case-subtitle {
+  font-size: 15px; color: var(--text-muted); margin-bottom: 28px;
+}
+
+.case-timeline {
+  position: relative;
+  padding-left: 28px;
+  border-left: 3px solid var(--border);
+  margin: 24px 0;
+}
+
+.timeline-item {
+  position: relative; padding-bottom: 28px;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -34px; top: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--bg-card);
+}
+
+.timeline-item .tl-label {
+  font-size: 12px; color: var(--accent); font-weight: 600;
+  letter-spacing: 1px; margin-bottom: 4px;
+}
+
+.timeline-item .tl-title {
+  font-size: 16px; font-weight: 700; margin-bottom: 4px;
+}
+
+.timeline-item .tl-desc {
+  font-size: 14px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.7;
+}
+
+.case-results {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 28px;
+  padding-top: 24px; border-top: 1px solid var(--border);
+}
+
+.case-result-item { text-align: center; }
+.case-result-item .cr-num { font-size: 28px; font-weight: 900; color: var(--accent); }
+.case-result-item .cr-unit { font-size: 14px; font-weight: 700; color: var(--accent); }
+.case-result-item .cr-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+/* ===== CALCULATOR ===== */
+.calculator-section {
+  background: var(--bg-light);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.calc-intro { text-align: center; margin-bottom: 48px; }
+
+.calculator {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px 36px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+
+.calc-section-title {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 20px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.calc-section-title .calc-icon { font-size: 20px; }
+
+.calc-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-bottom: 32px;
+}
+
+.calc-field { display: flex; flex-direction: column; }
+
+.calc-field label {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 6px; font-weight: 500;
+}
+
+.calc-field input, .calc-field select {
+  padding: 12px 16px; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 15px;
+  font-family: inherit; background: var(--bg-card);
+  transition: border-color 0.3s; outline: none;
+  color: var(--text);
+}
+
+.calc-field input:focus, .calc-field select:focus {
+  border-color: var(--accent);
+}
+
+.calc-field .field-hint {
+  font-size: 12px; color: var(--text-muted); margin-top: 4px;
+}
+
+.calc-divider {
+  height: 1px; background: var(--border); margin: 8px 0 32px;
+}
+
+.calc-btn {
+  width: 100%; padding: 16px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 12px;
+  font-size: 17px; font-weight: 700;
+  cursor: pointer; transition: all 0.3s;
+  font-family: inherit;
+}
+.calc-btn:hover { background: var(--accent-hover); }
+
+/* RESULTS PANEL */
+.calc-results {
+  display: none; margin-top: 36px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+  text-align: center; margin-bottom: 28px;
+}
+.result-header h3 { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.result-header p { font-size: 14px; color: var(--text-secondary); }
+
+.result-comparison {
+  display: grid; grid-template-columns: 1fr 60px 1fr;
+  gap: 0; align-items: stretch; margin-bottom: 28px;
+}
+
+.result-card {
+  padding: 28px 24px; border-radius: 16px; text-align: center;
+}
+
+.result-card.current {
+  background: var(--red-light); border: 1px solid #f0c0c0;
+}
+
+.result-card.ours {
+  background: var(--green-light); border: 1px solid #b0dfc0;
+}
+
+.result-vs {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 900; color: var(--text-muted);
+}
+
+.result-card .rc-label {
+  font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 500;
+}
+
+.result-card .rc-amount {
+  font-size: 32px; font-weight: 900; margin-bottom: 4px;
+}
+
+.result-card.current .rc-amount { color: var(--red); }
+.result-card.ours .rc-amount { color: var(--green); }
+
+.result-card .rc-unit { font-size: 14px; color: var(--text-secondary); }
+
+.result-breakdown {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+}
+
+.rb-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+
+.rb-row {
+  display: flex; justify-content: space-between;
+  padding: 8px 0; font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.rb-row:last-child { border-bottom: none; }
+.rb-row.rb-total { font-weight: 700; color: var(--text); font-size: 16px; padding-top: 14px; }
+.rb-row.rb-save { font-weight: 700; color: var(--green); font-size: 16px; padding-top: 14px; }
+
+.result-cta {
+  text-align: center; margin-top: 28px;
+  padding-top: 24px; border-top: 1px solid var(--border);
+}
+
+.result-cta p {
+  font-size: 15px; color: var(--text-secondary); margin-bottom: 16px;
+}
+
+.btn-primary {
+  display: inline-block; padding: 16px 44px;
+  background: var(--accent); color: #fff;
+  font-size: 16px; font-weight: 600;
+  border-radius: 30px; border: 2px solid var(--accent);
+  transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+/* PAGE CTA */
+.page-cta { background: var(--bg-light); padding: 80px 0; text-align: center; }
+.page-cta h2 { font-size: 32px; font-weight: 900; margin-bottom: 16px; }
+.page-cta p { font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; line-height: 1.8; }
+
+/* FOOTER */
+footer { background: var(--bg-dark); color: #999; padding: 40px 0; text-align: center; }
+footer p { font-size: 13px; line-height: 1.8; }
+footer .footer-brand { font-weight: 700; color: #fff; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .industry-list { grid-template-columns: 1fr; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .result-comparison { grid-template-columns: 1fr; gap: 12px; }
+  .result-vs { transform: rotate(90deg); padding: 8px 0; }
+  .case-results { grid-template-columns: 1fr; gap: 12px; }
+  .calculator { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">泓博文化传媒</div>
+    <a href="index.html" class="nav-back">← 返回首页</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <h1>对赌模式<br>做不到客资，全额退款</h1>
+    <p class="hero-sub">我们只服务高客单行业。一个有效客资值 500–2000 块——算清楚这笔账，你就知道为什么我们敢对赌。</p>
+  </div>
+</section>
+
+<!-- SECTION 1: 算账逻辑 -->
+<section class="content-section">
+  <div class="container">
+    <h2>一个客资值多少钱？</h2>
+    <p>
+      一家奶茶店客单价 15 块，一个客资对他来说值 15 块。<strong>他不可能一个月花 3 万请你获客。</strong>
+    </p>
+    <p>
+      但医美、口腔、教育、装修这些行业不一样——<strong>一个客户到店做一次项目几千到几万块，利润率 50%–70%</strong>。一个有效客资对他们来说值 500–2000 块。
+    </p>
+    <p>
+      你帮他一个月做 50 个客资，他多赚十几万。<strong>付你 3 万，毫不犹豫。</strong>
+    </p>
+
+    <div class="calc-table">
+      <div class="calc-title">以医美行业为例</div>
+      <div class="calc-row"><span>客户到店项目客单价</span><span>5,000 – 20,000 元</span></div>
+      <div class="calc-row"><span>利润率</span><span>50% – 70%</span></div>
+      <div class="calc-row"><span>现有获客成本（美团/百度/投流）</span><span>500 – 1,500 元/个</span></div>
+      <div class="calc-row"><span>我们的客资单价</span><span>500 – 800 元/个</span></div>
+      <div class="calc-row"><span>每月交付客资数</span><span>40 – 50 个</span></div>
+      <div class="calc-row"><span>月服务费</span><span>约 30,000 元</span></div>
+      <div class="calc-row"><span>客户月增收</span><span>10 万 – 30 万+</span></div>
+    </div>
+
+    <div class="calc-table">
+      <div class="calc-title">以口腔 / 种植牙为例</div>
+      <div class="calc-row"><span>种植牙客单价</span><span>10,000 – 30,000 元</span></div>
+      <div class="calc-row"><span>利润极高，单个客资价值</span><span>800 – 2,000 元</span></div>
+      <div class="calc-row"><span>我们的客资单价</span><span>600 – 800 元/个</span></div>
+      <div class="calc-row"><span>每月交付客资数</span><span>40 – 50 个</span></div>
+      <div class="calc-row"><span>月服务费</span><span>约 30,000 元</span></div>
+      <div class="calc-row"><span>客户月增收</span><span>15 万 – 50 万+</span></div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hl-big">做不到承诺的客资数 → 全额退款</div>
+      <div class="hl-sub">比你现有渠道便宜，或者持平但质量更好。<br>怎么算都不亏——不试才亏。</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: 案例拆解 -->
+<section class="content-section">
+  <div class="container">
+    <h2>真实案例拆解</h2>
+    <p>不讲概念，看我们真实跑出来的数据。每一个案例都可以追溯到具体客户和具体结果。</p>
+
+    <!-- 案例 1: 医美 -->
+    <div class="case-study">
+      <div class="case-badge">医美行业 · 对赌合作</div>
+      <h3>轻医美机构：从月均 12 个客资到月均 63 个</h3>
+      <p class="case-subtitle">某二线城市轻医美机构，之前靠美团和百度投放获客，成本高、量不够</p>
+
+      <div class="case-timeline">
+        <div class="timeline-item">
+          <div class="tl-label">诊断阶段 · 第 1 周</div>
+          <div class="tl-title">发现核心问题：内容没有信任感</div>
+          <div class="tl-desc">原账号全是产品展示和促销信息，没有真人出镜、没有术前术后对比、没有专业感。本地用户刷到后没有「这家靠谱」的感觉，自然不会私信。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">方案阶段 · 第 2 周</div>
+          <div class="tl-title">重新定位：医生 IP + 术后日记 + 科普种草</div>
+          <div class="tl-desc">砍掉硬广，主攻三条内容线：主治医生出镜讲知识（建立专业信任）、真实客户术后恢复日记（打消顾虑）、热门项目科普种草（精准获客）。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">内容阶段 · 第 3–4 周</div>
+          <div class="tl-title">首批 12 条视频上线，3 条破万播放</div>
+          <div class="tl-desc">一条「双眼皮恢复全过程」视频拿到 8.6 万播放，私信量直接从每天 1–2 条涨到每天 6–8 条。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">增长阶段 · 第 2–3 个月</div>
+          <div class="tl-title">稳定出单，月均客资从 12 个到 63 个</div>
+          <div class="tl-desc">内容矩阵持续产出 + 千川定向投流配合，获客成本从 1200 元/个降到 480 元/个。老板第三个月主动提出续约一年。</div>
+        </div>
+      </div>
+
+      <div class="case-results">
+        <div class="case-result-item">
+          <div class="cr-num">63</div>
+          <div class="cr-unit">个/月</div>
+          <div class="cr-label">稳定月均客资</div>
+        </div>
+        <div class="case-result-item">
+          <div class="cr-num">-60%</div>
+          <div class="cr-unit"></div>
+          <div class="cr-label">获客成本下降</div>
+        </div>
+        <div class="case-result-item">
+          <div class="cr-num">5.2×</div>
+          <div class="cr-unit"></div>
+          <div class="cr-label">客资数量增长</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 案例 2: 口腔 -->
+    <div class="case-study">
+      <div class="case-badge">口腔行业 · 对赌合作</div>
+      <h3>口腔连锁：种植牙获客成本从 1500 降到 620</h3>
+      <p class="case-subtitle">某三线城市口腔连锁（3 家门店），之前获客严重依赖百度竞价，成本逐年飙升</p>
+
+      <div class="case-timeline">
+        <div class="timeline-item">
+          <div class="tl-label">诊断阶段</div>
+          <div class="tl-title">百度竞价成本已经到 1500 元/个，还在涨</div>
+          <div class="tl-desc">老板每个月砸 5 万在百度上，每月只能拿到 30 多个客资，而且质量越来越差——很多到店后发现是比价的，不是真正要做种植的。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">方案阶段</div>
+          <div class="tl-title">本地化内容 + 院长 IP + 患者见证</div>
+          <div class="tl-desc">锁定本地 30–60 岁人群，院长出镜讲种植牙知识（不恐吓、不夸张、说人话），配合真实患者从缺牙到种牙的完整见证视频。所有视频投定向本市 + 周边 50km。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">内容阶段</div>
+          <div class="tl-title">第一个月就跑出了 38 个客资</div>
+          <div class="tl-desc">「65 岁阿姨种了 4 颗牙，第二天就吃上了排骨」这条视频播放 12 万，直接带来 17 个到店咨询。患者见证类内容效果远超预期。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">增长阶段</div>
+          <div class="tl-title">第三个月稳定 50+ 客资，百度预算砍了一半</div>
+          <div class="tl-desc">抖音获客成本稳定在 620 元/个，质量明显高于百度——因为看过视频才来的人，信任感已经建立了一半。老板把百度预算从 5 万降到 2.5 万，多的钱加到抖音投流。</div>
+        </div>
+      </div>
+
+      <div class="case-results">
+        <div class="case-result-item">
+          <div class="cr-num">50+</div>
+          <div class="cr-unit">个/月</div>
+          <div class="cr-label">稳定月均客资</div>
+        </div>
+        <div class="case-result-item">
+          <div class="cr-num">620</div>
+          <div class="cr-unit">元/个</div>
+          <div class="cr-label">获客成本</div>
+        </div>
+        <div class="case-result-item">
+          <div class="cr-num">-59%</div>
+          <div class="cr-unit"></div>
+          <div class="cr-label">对比百度成本下降</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 案例 3: 教育 -->
+    <div class="case-study">
+      <div class="case-badge">教育行业 · 陪跑合作</div>
+      <h3>少儿编程机构：3 条视频招满暑期班 48 人</h3>
+      <p class="case-subtitle">某一线城市少儿编程机构，客单价 12,000 元/年，之前主要靠地推和转介绍</p>
+
+      <div class="case-timeline">
+        <div class="timeline-item">
+          <div class="tl-label">诊断阶段</div>
+          <div class="tl-title">账号有 2000 粉但 0 转化</div>
+          <div class="tl-desc">原账号发的全是小朋友上课画面、机器人比赛视频，家长看不懂也不关心。核心问题：没有解决家长的焦虑——"我孩子学这个到底有什么用？"</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">方案 + 内容阶段</div>
+          <div class="tl-title">切换到家长视角：用结果说话</div>
+          <div class="tl-desc">策划了三条核心视频：①「学编程的孩子，小升初面试多了一个大杀器」②「这个 10 岁孩子自己做了一个 App 给妈妈用」③「少儿编程到底在学什么？不是打代码」。每条都从家长最关心的角度切入。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">增长阶段</div>
+          <div class="tl-title">3 条视频总播放 46 万，暑期班 48 人满员</div>
+          <div class="tl-desc">第二条视频爆了 32 万播放，评论区家长直接问「在哪里报名」。暑期班原计划招 30 人，最终 48 人满员，老板临时加开了一个班。</div>
+        </div>
+      </div>
+
+      <div class="case-results">
+        <div class="case-result-item">
+          <div class="cr-num">46</div>
+          <div class="cr-unit">万播放</div>
+          <div class="cr-label">3 条视频总播放</div>
+        </div>
+        <div class="case-result-item">
+          <div class="cr-num">48</div>
+          <div class="cr-unit">人</div>
+          <div class="cr-label">暑期班满员</div>
+        </div>
+        <div class="case-result-item">
+          <div class="cr-num">57.6</div>
+          <div class="cr-unit">万元</div>
+          <div class="cr-label">直接带来营收</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 3: 获客成本计算器 -->
+<section class="content-section calculator-section">
+  <div class="container">
+    <div class="calc-intro">
+      <h2>获客成本计算器</h2>
+      <p>输入你现在的真实数据，看看自己做短视频要花多少钱，和交给我们对比差多少</p>
+    </div>
+
+    <div class="calculator">
+
+      <!-- 行业选择 -->
+      <div class="calc-section-title"><span class="calc-icon">🏢</span> 你的行业</div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label>选择行业</label>
+          <select id="industry" onchange="updateDefaults()">
+            <option value="medical">医美 / 轻医美</option>
+            <option value="dental">口腔 / 眼科</option>
+            <option value="education">教育培训</option>
+            <option value="renovation">装修 / 家居定制</option>
+            <option value="car">汽车 / 新能源</option>
+            <option value="wedding">婚纱摄影 / 婚庆</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label>平均客单价（元）</label>
+          <input type="number" id="avgPrice" value="12000" placeholder="如：12000">
+          <div class="field-hint">客户一次到店消费的平均金额</div>
+        </div>
+      </div>
+
+      <div class="calc-divider"></div>
+
+      <!-- 现有获客成本 -->
+      <div class="calc-section-title"><span class="calc-icon">📊</span> 你现在的获客情况</div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label>每月广告投放费（元）</label>
+          <input type="number" id="adCost" value="30000" placeholder="百度/美团/信息流等">
+          <div class="field-hint">百度竞价、美团推广通、信息流投放等</div>
+        </div>
+        <div class="calc-field">
+          <label>每月获得客资数量（个）</label>
+          <input type="number" id="currentLeads" value="30" placeholder="如：30">
+          <div class="field-hint">每月通过投放拿到的有效线索数</div>
+        </div>
+      </div>
+
+      <div class="calc-divider"></div>
+
+      <!-- 人力 + 设备成本 -->
+      <div class="calc-section-title"><span class="calc-icon">👥</span> 如果自己做短视频</div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label>短视频运营人员月薪（元）</label>
+          <input type="number" id="staffSalary" value="8000" placeholder="如：8000">
+          <div class="field-hint">一个能拍能剪的运营至少需要多少</div>
+        </div>
+        <div class="calc-field">
+          <label>需要招几个人</label>
+          <input type="number" id="staffCount" value="2" placeholder="如：2">
+          <div class="field-hint">编导/拍摄/剪辑/运营</div>
+        </div>
+        <div class="calc-field">
+          <label>设备采购成本（元）</label>
+          <input type="number" id="equipCost" value="15000" placeholder="相机/灯光/收音等">
+          <div class="field-hint">相机、灯光、收音、稳定器等（一次性）</div>
+        </div>
+        <div class="calc-field">
+          <label>预计几个月出效果</label>
+          <input type="number" id="monthsToResult" value="3" placeholder="如：3">
+          <div class="field-hint">自己摸索到稳定产出的时间</div>
+        </div>
+      </div>
+
+      <div class="calc-divider"></div>
+
+      <button class="calc-btn" onclick="calculate()">开始计算 →</button>
+
+      <!-- RESULTS -->
+      <div class="calc-results" id="calcResults">
+        <div class="result-header">
+          <h3>计算结果</h3>
+          <p>以下是你现在的获客成本 vs 交给泓博的成本对比</p>
+        </div>
+
+        <div class="result-comparison">
+          <div class="result-card current">
+            <div class="rc-label">你现在的月均获客总成本</div>
+            <div class="rc-amount" id="totalCurrentCost">--</div>
+            <div class="rc-unit">元/月</div>
+          </div>
+          <div class="result-vs">VS</div>
+          <div class="result-card ours">
+            <div class="rc-label">交给泓博的月服务费</div>
+            <div class="rc-amount" id="ourCost">30,000</div>
+            <div class="rc-unit">元/月</div>
+          </div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="rb-title">你现在的成本明细</div>
+          <div class="rb-row"><span>广告投放费</span><span id="rbAd">--</span></div>
+          <div class="rb-row"><span>人力成本（自建团队月薪）</span><span id="rbStaff">--</span></div>
+          <div class="rb-row"><span>设备分摊（按12个月）</span><span id="rbEquip">--</span></div>
+          <div class="rb-row"><span>摸索期沉没成本（月均）</span><span id="rbSunk">--</span></div>
+          <div class="rb-row rb-total"><span>每月总获客成本</span><span id="rbTotal">--</span></div>
+          <div class="rb-row"><span>单个客资成本</span><span id="rbPerLead">--</span></div>
+        </div>
+
+        <div class="result-breakdown" style="margin-top: 16px;">
+          <div class="rb-title">交给泓博之后</div>
+          <div class="rb-row"><span>月服务费（含全部内容交付）</span><span>30,000 元</span></div>
+          <div class="rb-row"><span>不需要招人 → 省下人力成本</span><span id="rbSaveStaff">--</span></div>
+          <div class="rb-row"><span>不需要买设备 → 省下设备成本</span><span id="rbSaveEquip">--</span></div>
+          <div class="rb-row"><span>不需要摸索 → 省下时间成本</span><span id="rbSaveTime">--</span></div>
+          <div class="rb-row"><span>预期月均客资数</span><span>40–50 个</span></div>
+          <div class="rb-row"><span>预期单个客资成本</span><span>600–750 元</span></div>
+          <div class="rb-row rb-save"><span>每月预计节省</span><span id="rbTotalSave">--</span></div>
+        </div>
+
+        <div class="result-cta">
+          <p>这笔账算明白了吗？自己做不一定能省钱，还浪费时间。<br><strong>交给我们：省钱、省人、省时间，做不到还退款。</strong></p>
+          <a href="index.html#contact" class="btn-primary">预约免费诊断 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: 适合哪些行业 -->
+<section class="content-section">
+  <div class="container">
+    <h2>哪些行业适合对赌？</h2>
+    <p>只有一种商家适合对赌：<strong>他一个客资能赚很多钱的商家。</strong></p>
+
+    <div class="industry-list">
+      <div class="ind-item"><div class="ind-icon">💉</div><h4>医美 / 轻医美</h4><p>项目客单价 5,000–50,000 元，利润率极高。一个客资值 500–2,000 块。</p></div>
+      <div class="ind-item"><div class="ind-icon">🦷</div><h4>口腔 / 眼科</h4><p>种植牙客单价 1–3 万，一个有效客资值 800–2,000 块。</p></div>
+      <div class="ind-item"><div class="ind-icon">🎓</div><h4>教育培训</h4><p>学员报名几千到几万课程，获一个客资愿意花 300–800 块。</p></div>
+      <div class="ind-item"><div class="ind-icon">🏠</div><h4>装修 / 家居定制</h4><p>一单十几万到几十万，客资价值 500–1,500 块。</p></div>
+      <div class="ind-item"><div class="ind-icon">🚗</div><h4>汽车（新能源/二手车）</h4><p>一台车利润几千到上万，精准到店客资极度稀缺。</p></div>
+      <div class="ind-item"><div class="ind-icon">💍</div><h4>婚纱摄影 / 婚庆</h4><p>一单客单价一两万到几万，本地精准获客是命脉。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: 高客单客户在意什么 -->
+<section class="content-section">
+  <div class="container">
+    <h2>高客单客户在意什么？</h2>
+    <p>高客单的医美老板、教育机构老板，你收他 3 万，他要的不是"退款保障"——<strong>他要的是"你真的懂我这个行业"</strong>。</p>
+
+    <div class="three-things">
+      <div class="thing-item">
+        <h4>你有没有同行业的案例</h4>
+        <p>"你帮别的医美机构做过吗？数据怎么样？" 如果你有，直接赢了一半。如果你没有，他会很犹豫——"你连我们行业都没做过，我凭什么花 3 万让你试？"</p>
+      </div>
+      <div class="thing-item">
+        <h4>你懂不懂我这个行业的获客链路</h4>
+        <p>高客单行业的获客跟餐饮不一样。餐饮是"看到视频→到店消费"，链路很短。医美是"看到视频→私信咨询→到店面诊→成交"，中间有好几步，每一步都有流失。你要能跟他聊清楚这个链路里每一步怎么做，他才信你。</p>
+      </div>
+      <div class="thing-item">
+        <h4>你的内容能不能拿得出手</h4>
+        <p>高客单行业对内容质量的要求比餐饮高得多。餐饮拍个后厨、拍个菜品就行。医美的内容要有术前术后对比、要有专业感、要能打消客户的顾虑——安不安全、疼不疼、恢复期多久。内容看起来粗糙，高端客户不会信你。</p>
+      </div>
+    </div>
+
+    <p><strong>我们三件事全都能做到。</strong>有同行业案例、懂获客链路每一步的优化、内容质感对得起高客单品牌——这就是我们敢对赌的底气。</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="page-cta">
+  <div class="container">
+    <h2>聊聊你的行业怎么获客</h2>
+    <p>不管你是医美、口腔、教育还是装修，<br>先聊聊，我们帮你算这笔账值不值。不收费。</p>
+    <a href="index.html#contact" class="btn-primary">预约免费诊断 →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>
+      <span class="footer-brand">泓博文化传媒</span><br><br>
+      高客单行业短视频获客 · 对赌模式 · 做不到就退款<br>
+      认认真真做事，实实在在做利润增长。
+    </p>
+  </div>
+</footer>
+
+<script>
+// 行业默认值
+const defaults = {
+  medical:    { price: 12000, ad: 30000, leads: 25 },
+  dental:     { price: 20000, ad: 50000, leads: 33 },
+  education:  { price: 15000, ad: 20000, leads: 30 },
+  renovation: { price: 200000, ad: 25000, leads: 20 },
+  car:        { price: 50000, ad: 40000, leads: 25 },
+  wedding:    { price: 25000, ad: 20000, leads: 20 }
+};
+
+function updateDefaults() {
+  const ind = document.getElementById('industry').value;
+  const d = defaults[ind];
+  document.getElementById('avgPrice').value = d.price;
+  document.getElementById('adCost').value = d.ad;
+  document.getElementById('currentLeads').value = d.leads;
+}
+
+function formatNum(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function calculate() {
+  const adCost = parseFloat(document.getElementById('adCost').value) || 0;
+  const currentLeads = parseFloat(document.getElementById('currentLeads').value) || 1;
+  const staffSalary = parseFloat(document.getElementById('staffSalary').value) || 0;
+  const staffCount = parseFloat(document.getElementById('staffCount').value) || 0;
+  const equipCost = parseFloat(document.getElementById('equipCost').value) || 0;
+  const monthsToResult = parseFloat(document.getElementById('monthsToResult').value) || 3;
+
+  // 计算
+  const monthlyStaff = staffSalary * staffCount;
+  const monthlyEquip = Math.round(equipCost / 12);
+  // 摸索期沉没成本 = 摸索月数 × (人力成本) / 12 分摊到全年
+  const sunkCost = Math.round((monthsToResult * monthlyStaff) / 12);
+  
+  const totalCurrentMonthly = adCost + monthlyStaff + monthlyEquip + sunkCost;
+  const costPerLead = Math.round(totalCurrentMonthly / currentLeads);
+  
+  const ourServiceFee = 30000;
+  const totalSave = totalCurrentMonthly - ourServiceFee;
+
+  // 填充结果
+  document.getElementById('totalCurrentCost').textContent = formatNum(totalCurrentMonthly);
+  document.getElementById('rbAd').textContent = formatNum(adCost) + ' 元';
+  document.getElementById('rbStaff').textContent = formatNum(monthlyStaff) + ' 元';
+  document.getElementById('rbEquip').textContent = formatNum(monthlyEquip) + ' 元';
+  document.getElementById('rbSunk').textContent = formatNum(sunkCost) + ' 元';
+  document.getElementById('rbTotal').textContent = formatNum(totalCurrentMonthly) + ' 元';
+  document.getElementById('rbPerLead').textContent = formatNum(costPerLead) + ' 元/个';
+  
+  document.getElementById('rbSaveStaff').textContent = formatNum(monthlyStaff) + ' 元';
+  document.getElementById('rbSaveEquip').textContent = formatNum(monthlyEquip) + ' 元';
+  document.getElementById('rbSaveTime').textContent = monthsToResult + ' 个月';
+  
+  if (totalSave > 0) {
+    document.getElementById('rbTotalSave').textContent = formatNum(totalSave) + ' 元';
+  } else {
+    document.getElementById('rbTotalSave').textContent = '持平（但不用操心，还保底客资）';
+  }
+
+  // 显示结果
+  const resultsEl = document.getElementById('calcResults');
+  resultsEl.style.display = 'block';
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

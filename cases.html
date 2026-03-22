@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全部案例 — 泓博文化传媒</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #ffffff; --bg-light: #f5f5f5; --bg-dark: #1a1a1a; --bg-card: #f8f8f8;
+  --text: #1a1a1a; --text-s: #666666; --text-m: #999999;
+  --accent: #1a5fb4; --accent-h: #154d96; --border: #e8e8e8;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Noto Sans SC', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+nav .nav-inner { max-width: 1160px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.nav-brand { font-size: 15px; font-weight: 900; }
+.nav-back { font-size: 14px; color: var(--accent); font-weight: 500; }
+.nav-back:hover { opacity: 0.7; }
+
+.page-hero { padding: 110px 0 50px; text-align: center; border-bottom: 1px solid var(--border); }
+.page-hero h1 { font-size: clamp(28px, 4.5vw, 44px); font-weight: 900; margin-bottom: 12px; }
+.page-hero p { font-size: 16px; color: var(--text-s); max-width: 500px; margin: 0 auto; }
+
+.case-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 28px 0; position: sticky; top: 56px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); z-index: 50; border-bottom: 1px solid var(--border); }
+.case-tab { padding: 8px 20px; font-size: 14px; font-weight: 500; color: var(--text-m); border: 1px solid var(--border); border-radius: 22px; cursor: pointer; transition: all 0.3s; background: #fff; font-family: inherit; }
+.case-tab:hover { color: var(--text-s); border-color: #ccc; }
+.case-tab.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+.case-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 36px 0; }
+.case-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: all 0.3s; display: block; }
+.case-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.case-thumb { width: 100%; background: #eee; position: relative; overflow: hidden; }
+.case-thumb img { width: 100%; display: block; }
+.platform-badge { position: absolute; top: 8px; left: 8px; padding: 3px 10px; border-radius: 5px; font-size: 11px; font-weight: 600; background: rgba(0,0,0,0.6); color: #fff; backdrop-filter: blur(4px); }
+.case-play-hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #fff; opacity: 0; transition: opacity 0.3s; }
+.case-card:hover .case-play-hint { opacity: 1; }
+.case-info { padding: 12px 14px; }
+.case-info h4 { font-size: 13px; font-weight: 700; line-height: 1.3; margin-bottom: 2px; }
+.case-info p { font-size: 12px; color: var(--text-m); }
+
+.case-count { text-align: center; padding: 0 0 16px; font-size: 14px; color: var(--text-m); }
+.case-count span { font-weight: 700; color: var(--text); }
+
+.page-cta { background: var(--bg-light); padding: 72px 0; text-align: center; border-top: 1px solid var(--border); }
+.page-cta h2 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+.page-cta p { font-size: 16px; color: var(--text-s); margin-bottom: 28px; }
+.btn-p { display: inline-block; padding: 16px 40px; background: var(--accent); color: #fff; font-size: 16px; font-weight: 600; border-radius: 30px; transition: all 0.3s; }
+.btn-p:hover { background: var(--accent-h); }
+
+footer { background: var(--bg-dark); color: #999; padding: 36px 0; text-align: center; }
+footer p { font-size: 13px; line-height: 1.8; }
+footer .fb { font-weight: 700; color: #fff; }
+
+@media (max-width: 768px) { .case-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .case-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">泓博文化传媒</div>
+    <a href="index.html" class="nav-back">← 返回首页</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>全部案例</h1>
+    <p>覆盖 9 大行业，每一个都是真实跑出来的结果</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="case-tabs">
+    <button class="case-tab active" onclick="switchTab('all', this)">全部</button>
+    <button class="case-tab" onclick="switchTab('car', this)">汽车</button>
+    <button class="case-tab" onclick="switchTab('beauty', this)">美容</button>
+    <button class="case-tab" onclick="switchTab('overseas', this)">境外</button>
+    <button class="case-tab" onclick="switchTab('photo', this)">摄影</button>
+    <button class="case-tab" onclick="switchTab('edu', this)">教育培训</button>
+    <button class="case-tab" onclick="switchTab('local', this)">本地生活</button>
+    <button class="case-tab" onclick="switchTab('knowledge', this)">知识付费</button>
+    <button class="case-tab" onclick="switchTab('franchise', this)">招商加盟</button>
+    <button class="case-tab" onclick="switchTab('reno', this)">装修</button>
+  </div>
+
+  <div class="case-count">当前显示 <span id="caseCount">64</span> 个案例</div>
+
+  <div class="case-grid" id="caseGrid">
+    <!-- ===== 汽车 (22张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 1</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 2</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 3</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 4</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-05.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 5</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-06.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 6</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-07.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 7</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-08.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 8</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-09.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 9</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-10.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 10</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-11.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 11</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-12.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 12</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-13.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 13</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-14.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 14</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-15.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 15</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-16.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 16</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-17.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 17</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-18.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 18</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-19.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 19</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-20.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 20</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-21.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 21</h4><p>汽车 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="car">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/car-22.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>汽车案例 22</h4><p>汽车 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 美容 (6张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="beauty">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/beauty-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>美容案例 1</h4><p>美容 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="beauty">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/beauty-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>美容案例 2</h4><p>美容 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="beauty">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/beauty-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>美容案例 3</h4><p>美容 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="beauty">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/beauty-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>美容案例 4</h4><p>美容 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="beauty">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/beauty-05.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>美容案例 5</h4><p>美容 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="beauty">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/beauty-06.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>美容案例 6</h4><p>美容 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 境外 (14张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 1</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 2</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 3</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 4</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-05.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 5</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-06.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 6</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-07.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 7</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-08.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 8</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-09.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 9</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-10.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 10</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-11.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 11</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-12.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 12</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-13.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 13</h4><p>境外 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="overseas">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/overseas-14.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>境外案例 14</h4><p>境外 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 摄影 (4张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="photo">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/photo-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>摄影案例 1</h4><p>摄影 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="photo">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/photo-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>摄影案例 2</h4><p>摄影 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="photo">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/photo-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>摄影案例 3</h4><p>摄影 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="photo">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/photo-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>摄影案例 4</h4><p>摄影 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 教育培训 (4张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="edu">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/edu-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>教育培训案例 1</h4><p>教育培训 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="edu">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/edu-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>教育培训案例 2</h4><p>教育培训 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="edu">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/edu-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>教育培训案例 3</h4><p>教育培训 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="edu">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/edu-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>教育培训案例 4</h4><p>教育培训 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 本地生活 (6张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="local">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/local-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>本地生活案例 1</h4><p>本地生活 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="local">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/local-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>本地生活案例 2</h4><p>本地生活 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="local">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/local-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>本地生活案例 3</h4><p>本地生活 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="local">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/local-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>本地生活案例 4</h4><p>本地生活 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="local">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/local-05.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>本地生活案例 5</h4><p>本地生活 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="local">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/local-06.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>本地生活案例 6</h4><p>本地生活 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 知识付费 (2张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="knowledge">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/knowledge-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>知识付费案例 1</h4><p>知识付费 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="knowledge">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/knowledge-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>知识付费案例 2</h4><p>知识付费 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 招商加盟 (2张) =====  -->
+    <a href="#" target="_blank" class="case-card" data-industry="franchise">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/franchise-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>招商加盟案例 1</h4><p>招商加盟 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="franchise">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/franchise-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>招商加盟案例 2</h4><p>招商加盟 · 小红书</p></div>
+    </a>
+
+    <!-- ===== 装修 (4张) ===== -->
+    <a href="#" target="_blank" class="case-card" data-industry="reno">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/reno-01.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>装修案例 1</h4><p>装修 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="reno">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/reno-02.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>装修案例 2</h4><p>装修 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="reno">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/reno-03.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>装修案例 3</h4><p>装修 · 小红书</p></div>
+    </a>
+    <a href="#" target="_blank" class="case-card" data-industry="reno">
+      <div class="case-thumb"><span class="platform-badge">小红书</span><img src="images/cases/reno-04.jpg"><div class="case-play-hint">▶</div></div>
+      <div class="case-info"><h4>装修案例 4</h4><p>装修 · 小红书</p></div>
+    </a>
+  </div>
+</div>
+
+<section class="page-cta">
+  <div class="container">
+    <h2>看完案例，聊聊你的行业？</h2>
+    <p>不管你是哪个行业，先聊聊，不收费</p>
+    <a href="index.html#contact" class="btn-p">预约免费诊断 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><span class="fb">泓博文化传媒</span><br><br>认认真真做事，实实在在做业绩增长。</p>
+  </div>
+</footer>
+
+<script>
+function switchTab(industry, btn) {
+  document.querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  let count = 0;
+  document.querySelectorAll('.case-card').forEach(card => {
+    const show = (industry === 'all' || card.dataset.industry === industry);
+    card.style.display = show ? '' : 'none';
+    if (show) count++;
+  });
+  document.getElementById('caseCount').textContent = count;
+}
+</script>
+</body>
+</html>
